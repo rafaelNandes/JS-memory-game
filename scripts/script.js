@@ -3,54 +3,14 @@ const BACK = "card_back";
 const CARD = "card"
 const ICON = "icon"
 let cards = null;
-let techs = [
-    'bootstrap',
-    'css',
-    'electron',
-    'firebase',
-    'html',
-    'javascript',
-    'jquery',
-    'mongo',
-    'node',
-    'react'
-];
+
 
 startGame();
 
 function startGame(){
-    cards = createCardsFromTechs(techs);
+    cards = game.createCardsFromTechs();
     shuffleCards(cards);
     initializeCards(cards);
-}
-
-function createCardsFromTechs(techs){
-    let cards = [];
-
-    //receive pairs of arrays for each card
-    for(let tech of techs){
-        cards.push(createPairFromTech(tech));
-    }
-
-    return cards.flatMap(pair => pair); //makes all pairs as a single array
-}
-
-//Duplicate each pair
-function createPairFromTech(tech){
-    return [{
-        id: createIdWithTech(tech),
-        icon: tech,
-        flipped: false    
-    },{
-        id: createIdWithTech(tech),
-        icon: tech,
-        flipped: false
-    }]
-}
-
-//Generate an ID from each card
-function createIdWithTech(tech){
-    return tech + parseInt(Math.random() * 1000);
 }
 
 function shuffleCards(cards){
