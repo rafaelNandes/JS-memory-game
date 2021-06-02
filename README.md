@@ -5,6 +5,6 @@
 
 **CSS:**
 
-- Flexbox
-- Grid
+- Flexbox for the cards
+- Grid for the board
 
