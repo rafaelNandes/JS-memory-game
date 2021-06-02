@@ -48,7 +48,7 @@ body{
     transform: rotateY(180deg);
 }
 
-.gameOver{
+#gameOver{
     display: none; /*When there is game over change to flex*/  
     position: absolute;
     top: 0; /*Stay on top of the other view*/
