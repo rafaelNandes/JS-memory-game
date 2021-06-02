@@ -1,9 +1,10 @@
 # JS-memory-game
-Classic Memory Game with JavaScript.
+**Classic Memory Game with JavaScript.**
 
 
 
-CSS:
+**CSS:**
 
 - Flexbox
 - Grid
+
