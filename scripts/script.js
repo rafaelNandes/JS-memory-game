@@ -8,26 +8,14 @@ let cards = null;
 startGame();
 
 function startGame(){
-    cards = game.createCardsFromTechs();
-    shuffleCards(cards);
-    initializeCards(cards);
+    initializeCards(game.createCardsFromTechs());
 }
 
-function shuffleCards(cards){
-    let currentIndex = cards.length;
-    let randomIndex = 0;
-
-    while(currentIndex !== 0){
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [cards[randomIndex], cards[currentIndex]] = [cards[currentIndex], cards[randomIndex]];
-    }
-}
-
+//initialize the creation of cards in the html
 function initializeCards(cards){
     let gameBoard = document.getElementById("gameBoard");
     
-    cards.forEach(card => {
+    game.cards.forEach(card => {
         let cardElement = document.createElement('div');
         cardElement.id = card.id;
         cardElement.classList.add(CARD);
@@ -46,6 +34,7 @@ function createCardContent(card, cardElement){
     createCardFace(BACK, card, cardElement);
 }
 
+//Creating the cards on html
 function createCardFace(face, card, element){
     let cardElementFace = document.createElement('div');
     cardElementFace.classList.add(face);
@@ -60,6 +49,20 @@ function createCardFace(face, card, element){
     element.appendChild(cardElementFace);
 }
 
+//Call when there is click event
 function flipCard(){
-    this.classList.add("flip");
+    if(game.setCard(this.id)) {
+        this.classList.add("flip");
+        if(game.checkMatch()){
+            game.clearCards();
+        }else {
+            setTimeout(() => {
+                let firstCardView = document.getElementById(game.firstCard.id);
+                let secondCardView = document.getElementById(game.secondCard.id);
+                firstCardView.classList.remove("flip");
+                secondCardView.classList.remove("flip");
+                game.clearCards();
+            }, 1000);
+        }
+    }
 }
